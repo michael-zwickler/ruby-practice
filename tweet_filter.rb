@@ -1,3 +1,4 @@
+# program that filters bad words out of a tweet
 test_tweets = [
   "This president sucks!",
   "I hate this Blank House!",
@@ -7,10 +8,18 @@ test_tweets = [
 
 banned_phrases = ["sucks", "bad", "hate", "foolish", "danger to society"]
 
+cleaned_test_tweets = []
+
 count_tweets = 0
 while count_tweets < test_tweets.length
   current_string = test_tweets[count_tweets]
-  puts current_string.split("sucks").join("CENSORED")
-  break
+
+  banned_phrases.each do |bad_word|
+    current_string = current_string.split(bad_word).join('CENSORED')
+  end
+
+  cleaned_test_tweets.push(current_string)
   count_tweets += 1
 end
+
+puts cleaned_test_tweets
