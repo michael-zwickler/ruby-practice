@@ -21,12 +21,16 @@ sorted_by_sport = Hash.new()
 
 players.each do |player|
   # player is a hash!
-  # check if tha value stored under player:sport is already used as a key in sorted_by_sport
-  # if not, add it. and also add an [] to and push the name into it
-  if sorted_by_sport.include?(player[:sport].to_sym)
-    sorted_by_sport[player[:sport].to_sym].push(player[:name])
-  else 
-    sorted_by_sport[player[:sport].to_sym] = [player[:name]]
+  # if the sport does not yet exist in the new hash as symbol, add it and create an empty value array
+  # push the currenty player name to the hash
+  
+  sport = player[:sport].to_sym
+  name = player[:name]
+
+  if sorted_by_sport.include?(sport) == false
+    sorted_by_sport[sport] = []
   end
+  
+  sorted_by_sport[sport].push(name)
 end
 puts sorted_by_sport
