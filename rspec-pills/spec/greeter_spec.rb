@@ -1,3 +1,5 @@
+require './greeter.rb'
+
 describe 'Greeter' do
   it 'greets Rico' do
     expect(greet('Rico')).to eq 'Hallo Rico!'
