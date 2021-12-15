@@ -1,5 +1,4 @@
 class BankAccount
-  @balance
 
   def initialize
     @balance = 0
