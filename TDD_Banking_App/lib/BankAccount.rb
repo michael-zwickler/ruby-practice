@@ -13,7 +13,7 @@ class BankAccount
   end
   
   def withdraw(value)
-    if value > @balance
+    if value >= @balance
       err_string = "Not sufficient balance. Max. Amount to be withdrawn: #{@balance}"
       raise ArgumentError.new(err_string)   
     end
