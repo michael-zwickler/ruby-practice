@@ -6,6 +6,8 @@ class BankAccount
   end
 
   def deposit(value)
+    raise ArgumentError.new('Cannot deposit negative value') if value <= 0
+    
     @balance += value
     return value
   end

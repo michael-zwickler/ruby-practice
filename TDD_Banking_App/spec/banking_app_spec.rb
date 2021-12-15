@@ -5,7 +5,7 @@ RSpec.describe BankAccount do
   describe '#deposit' do
     context 'wrong input, negative number' do
       it 'throws an error when negative number requested to input' do
-        expect(subject.deposit(-1)).to raise_error(ArgumentError, 'Cannot deposit negative value')
+        expect{subject.deposit(-1)}.to raise_error(ArgumentError, 'Cannot deposit negative value')
       end
     end
     
