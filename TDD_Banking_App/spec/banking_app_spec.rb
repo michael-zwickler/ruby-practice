@@ -8,17 +8,25 @@ RSpec.describe BankAccount do
         expect{subject.deposit(-1)}.to raise_error(ArgumentError, 'Cannot deposit negative value')
       end
     end
-    
     context 'correct input' do
       it 'returns the confirmation of the deposited value' do
         expect(subject.deposit(100)).to eq(100)           
       end
     end
   end
-
+  
   describe '#withdraw' do
-    it 'returns the requested money' do
-      expect(subject.withdraw(100)).to eq(100)
+    context 'balance not sufficient balance' do
+      it 'returns nothing, but shows the max amount to be withdrawn' do
+        subject.deposit(100)
+        expect{subject.withdraw(200)}.to raise_error(ArgumentError, 'Not sufficient balance. Max. Amount to be withdrawn: 100')
+      end
+    end  
+    context 'valid input, sufficient balance' do
+      it 'returns the requested money' do
+        subject.deposit(200)
+        expect(subject.withdraw(100)).to eq(100)
+      end
     end
   end
 
