@@ -3,8 +3,16 @@ require 'BankAccount'
 RSpec.describe BankAccount do
 
   describe '#deposit' do
-    it 'returns the confirmation of the deposited value' do
-      expect(subject.deposit(100)).to eq(100)           
+    context 'wrong input, negative number' do
+      it 'throws an error when negative number requested to input' do
+        expect(subject.deposit(-1)).to raise_error(ArgumentError, 'Cannot deposit negative value')
+      end
+    end
+    
+    context 'correct input' do
+      it 'returns the confirmation of the deposited value' do
+        expect(subject.deposit(100)).to eq(100)           
+      end
     end
   end
 
