@@ -1,4 +1,10 @@
 class BankAccount
+  @balance
+
+  def initialize
+    @balance = 0
+  end
+
   def deposit(value)
     return value
   end
@@ -8,7 +14,7 @@ class BankAccount
   end
 
   def view_balance()
-    return 100
+    return @balance
   end
 
 end

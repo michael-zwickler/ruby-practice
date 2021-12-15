@@ -15,9 +15,16 @@ RSpec.describe BankAccount do
   end
 
   describe '#view_balance' do
-    it 'shows the account balance' do
-      subject.deposit(100)
-      expect(subject.view_balance).to eq(100)
+    context 'new bank account' do
+      it 'shows the account balance 0' do
+        expect(subject.view_balance).to eq(0)
+      end
+    end
+    context 'deposit money to an empty account first, and then view balance' do
+      it 'shows the account balance 100' do
+        subject.deposit(100)
+        expect(subject.view_balance).to eq(100)
+      end
     end
   end
 
