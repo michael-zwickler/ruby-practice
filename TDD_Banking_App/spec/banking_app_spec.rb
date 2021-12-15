@@ -26,6 +26,13 @@ RSpec.describe BankAccount do
         expect(subject.view_balance).to eq(100)
       end
     end
+    context 'withdraw money from an account, and then view balance' do
+      it 'shows the account balance 50' do
+        subject.deposit(100)
+        subject.withdraw(50)
+        expect(subject.view_balance).to eq(50)
+      end
+    end
   end
 
 end
