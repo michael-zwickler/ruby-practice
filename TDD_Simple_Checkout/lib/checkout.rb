@@ -9,11 +9,16 @@ class Checkout
   end
 
   def show_total()
-    sum = 0
-    @basket.each do |item|
-      sum += item.price
-    end
-    
-    return "£#{sprintf("%#.2f", sum)}"
+    total = calc_total()
+    return "£#{sprintf("%#.2f", total)}"
   end
+
+  private
+  
+  def calc_total()
+    sum = 0
+    @basket.each { |item| sum += item.price }
+    return sum
+  end
+
 end
