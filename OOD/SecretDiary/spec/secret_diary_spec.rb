@@ -2,11 +2,16 @@ require 'secret_diary'
 
 RSpec.describe SecretDiary do
 
+  let(:unlocked_diary) do 
+    diary = SecretDiary.new()
+    diary.unlock!()
+    break diary
+  end
+
   context 'when fresh diary' do
     it {is_expected.to be_locked}
     it '#get_entries returns an empty array' do
-      subject.unlock!()
-      expect(subject.get_entries()).to be_empty
+      expect(unlocked_diary.get_entries()).to be_empty
     end
   end
 
@@ -23,15 +28,14 @@ RSpec.describe SecretDiary do
   end
 
   context 'when diary is unlocked' do
+    subject { unlocked_diary }
+
     it '#lock changes locked? to true' do
-      subject.unlock!()
       expect { subject.lock!() }.to change { subject.locked?() }.from(false).to(true)
     end
     it '#add_entry stores an entry into the diary' do
-      new_entry = 'I am a new entry'
-      subject.unlock!()
-      subject.add_entry(new_entry)
-      expect(subject.get_entries()).to include(new_entry)
+      subject.add_entry(text = 'I am a new entry')
+      expect(subject.get_entries()).to include(text)
     end
   end
 end
